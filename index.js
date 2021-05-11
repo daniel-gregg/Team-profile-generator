@@ -1,26 +1,27 @@
-//Import required NPM packages
+//Import required NPM packages and modules
 const inquirer = require('inquirer');
-const renderCards = require('/renderCards.js')
+const cardTemplate = require('./lib/cardTemplate.js');
+const studentCardTemplate = require('./lib/studentCardTemplate.js');
+const renderCards = require('./lib/renderCards.js')
+
 let ANSWERS = [];
 
 //Import local js modules
 const questions = require("./lib/questions.js");
+const writeHtml = require('./lib/renderCards.js');
 
 const updateAnswers = (newData) => {
-    ANSWERS = [...ANSWERS, ...newData];
+    ANSWERS = [...ANSWERS, newData];
 }
 
 //Initialise app function - this runs the prompts in the console once the program is called with 'node index.js'
 async function init() {
     let cont = true;
-    console.log("start")
     const answersArray = await whileLoop(cont)
-    console.log("out of while loop")
 
     //up to here!
-    array.forEach(renderCards)
-
-    console.log(answersArray)
+    console.log(ANSWERS)
+    ANSWERS.forEach(x => createCards(x))
 }
 
 const askQuestions = async () => {
@@ -29,13 +30,28 @@ const askQuestions = async () => {
 
 const whileLoop = async(cont) => {
     let keepAskingQuestions = cont;
-    while(cont) {
-        console.log("asking questions")
+    while(keepAskingQuestions) {
         const newAnswers = await askQuestions()
         updateAnswers(newAnswers);
         keepAskingQuestions = newAnswers.Continue
     }
-    return arr
 }
 // Function call to initialize app
 init();
+
+const createCards = (el) => {
+    if(el.role != "student"){
+        const name = el.name
+        const id = el.idNumber
+        const role = el.role
+        const email = el.email
+        const github = el.gitHubName
+        writeHtml(cardTemplate(name, id, role, email, github))
+    } else {
+        const name = el.name
+        const id = el.idNumber
+        const email = el.email
+        const school = el.schoolName
+        writeHtml(studentCardTemplate(name, id, email, school))
+    }
+}
