@@ -1,0 +1,28 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "A simple team profile generator that allows a user to generate a basic html team profile page using interactive console inputs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3",
+    "node-html-parser": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaniel-boone/Team-profile-generator.git"
+  },
+  "author": "spaniel-boone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spaniel-boone/Team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/spaniel-boone/Team-profile-generator#readme"
+}
