@@ -44,7 +44,7 @@ const createCards = (el) => {
     } 
     
     if(el.role === "Intern"){
-        return studentCardTemplate(el.name, el.idNumber, el.email, el.school)
+        return studentCardTemplate(el.name, el.idNumber, el.email, el.schoolName)
     }
 }
 
